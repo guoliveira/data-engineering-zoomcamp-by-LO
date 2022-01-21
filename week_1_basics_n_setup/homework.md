@@ -31,20 +31,9 @@ After that, run
 
 * `terraform init`
 * `terraform plan`
-* `terraform apply` 
+* `terraform apply`
 
-Apply the plan and copy the output to the form
- 
-`  Enter a value: uplifted-nuance-338810
-
-
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-  + create
-
-Terraform will perform the following actions:
-
-  # google_bigquery_dataset.dataset will be created
-  + resource "google_bigquery_dataset" "dataset" {
+`     + resource "google_bigquery_dataset" "dataset" {
       + creation_time              = (known after apply)
       + dataset_id                 = "trips_data_all"
       + delete_contents_on_destroy = false
@@ -54,24 +43,26 @@ Terraform will perform the following actions:
       + location                   = "europe-west6"
       + project                    = "uplifted-nuance-338810"
       + self_link                  = (known after apply)
+`
 
-      + access {
+`      + access {
           + domain         = (known after apply)
           + group_by_email = (known after apply)
           + role           = (known after apply)
           + special_group  = (known after apply)
           + user_by_email  = (known after apply)
+`
 
-          + view {
+`+ view {
               + dataset_id = (known after apply)
               + project_id = (known after apply)
               + table_id   = (known after apply)
             }
         }
     }
+`
 
-  # google_storage_bucket.data-lake-bucket will be created
-  + resource "google_storage_bucket" "data-lake-bucket" {
+`  + resource "google_storage_bucket" "data-lake-bucket" {
       + force_destroy               = true
       + id                          = (known after apply)
       + location                    = "EUROPE-WEST6"
@@ -81,111 +72,42 @@ Terraform will perform the following actions:
       + storage_class               = "STANDARD"
       + uniform_bucket_level_access = true
       + url                         = (known after apply)
-
       + lifecycle_rule {
           + action {
               + type = "Delete"
             }
-
           + condition {
               + age                   = 30
               + matches_storage_class = []
               + with_state            = (known after apply)
             }
         }
-
       + versioning {
           + enabled = true
         }
     }
+`
 
+`
 Plan: 2 to add, 0 to change, 0 to destroy.
-
-
-
-var.project
-  Your GCP Project ID
-
-  Enter a value: uplifted-nuance-338810
-
-
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-  + create
-
-Terraform will perform the following actions:
-
-  # google_bigquery_dataset.dataset will be created
-  + resource "google_bigquery_dataset" "dataset" {
-      + creation_time              = (known after apply)
-      + dataset_id                 = "trips_data_all"
-      + delete_contents_on_destroy = false
-      + etag                       = (known after apply)
-      + id                         = (known after apply)
-      + last_modified_time         = (known after apply)
-      + location                   = "europe-west6"
-      + project                    = "uplifted-nuance-338810"
-      + self_link                  = (known after apply)
-
-      + access {
-          + domain         = (known after apply)
-          + group_by_email = (known after apply)
-          + role           = (known after apply)
-          + special_group  = (known after apply)
-          + user_by_email  = (known after apply)
-
-          + view {
-              + dataset_id = (known after apply)
-              + project_id = (known after apply)
-              + table_id   = (known after apply)
-            }
-        }
-    }
-
-  # google_storage_bucket.data-lake-bucket will be created
-  + resource "google_storage_bucket" "data-lake-bucket" {
-      + force_destroy               = true
-      + id                          = (known after apply)
-      + location                    = "EUROPE-WEST6"
-      + name                        = "dtc_data_lake_uplifted-nuance-338810"
-      + project                     = (known after apply)
-      + self_link                   = (known after apply)
-      + storage_class               = "STANDARD"
-      + uniform_bucket_level_access = true
-      + url                         = (known after apply)
-
-      + lifecycle_rule {
-          + action {
-              + type = "Delete"
-            }
-
-          + condition {
-              + age                   = 30
-              + matches_storage_class = []
-              + with_state            = (known after apply)
-            }
-        }
-
-      + versioning {
-          + enabled = true
-        }
-    }
-
-Plan: 2 to add, 0 to change, 0 to destroy.
-
 Do you want to perform these actions?
   Terraform will perform the actions described above.
   Only 'yes' will be accepted to approve.
-
-  Enter a value: yes
-
 google_bigquery_dataset.dataset: Creating...
 google_storage_bucket.data-lake-bucket: Creating...
 google_storage_bucket.data-lake-bucket: Creation complete after 2s [id=dtc_data_lake_uplifted-nuance-338810]
-google_bigquery_dataset.dataset: Creation complete after 2s [id=projects/uplifted-nuance-338810/datasets/trips_data_all]`
+google_bigquery_dataset.dataset: Creation complete after 2s [id=projects/uplifted-nuance-338810/datasets/trips_data_all]
+`
 
 ## Prepare Postgres 
 
 Run Postgres and load data as shown in the videos
+
+NOTE: I RAN the queries in DBEAVER connecting to POSTGRES in Docker:
+
+![img.png](img.png)
+
+![img_7.png](img_7.png)
 
 We'll use the yellow taxi trips from January 2021:
 
@@ -198,7 +120,7 @@ Download this data and put it to Postgres
 ## Question 3. Count records 
 
 How many taxi trips were there on January 15?
-![img.png](img.png)
+![img_6.png](img_6.png)
 ## Question 4. Average
 
 Find the largest tip for each day. 
