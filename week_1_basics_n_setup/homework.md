@@ -121,6 +121,11 @@ Download this data and put it to Postgres
 
 How many taxi trips were there on January 15?
 ![img_6.png](img_6.png)
+```SQL
+SELECT count(*)
+FROM public.yellow_taxi
+WHERE date(tpep_pickup_datetime)='2021-01-15'
+```
 ## Question 4. Average
 
 Find the largest tip for each day. 
@@ -128,6 +133,14 @@ On which day it was the largest tip in January?
 
 (note: it's not a typo, it's "tip", not "trip")
 ![img_1.png](img_1.png)
+```SQL
+SELECT date(tpep_dropoff_datetime) as day, max(tip_ammount) as Max_tip
+FROM public.yellow_taxi
+WHERE date(tpep_dropoff_datetime) BETWEEN '2021-01-01' AND '2021-01-31'
+GROUP BY date(tpep_dropoff_datetime)
+ORDER BY Max_tip DESC
+```
+
 ## Question 5. Most popular destination
 
 What was the most popular destination for passengers picked up 
