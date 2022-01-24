@@ -154,6 +154,9 @@ FROM public.taxi_zone t
 INNER JOIN (SELECT "DOLocationID", Count(*) as C
             FROM public.yellow_taxi
             WHERE date(tpep_pickup_datetime) = '2021-01-14'
+            AND "PULocationID" IN (SELECT "LocationID" as L
+                                   FROM public.taxi_zone t1
+                                   WHERE t."Zone"='Central Park')
             GROUP BY "DOLocationID"
             ORDER BY C DESC
             LIMIT 1) as MAX_DO
@@ -166,6 +169,18 @@ MAX_DO."DOLocationID"=t."Location"
 What's the pickup-dropoff pair with the largest 
 average price for a ride (calculated based on `total_amount`)?
 ![img_3.png](img_3.png)
+
+```SQL
+SELECT t.*
+FROM public.taxi_zone t
+INNER JOIN (SELECT "DOLocationID", "DOLocationID", Count(*) as C
+            FROM public.yellow_taxi
+            WHERE date(tpep_pickup_datetime) = '2021-01-14'
+            GROUP BY "DOLocationID"
+            ORDER BY C DESC
+            LIMIT 1) as MAX_DO
+MAX_DO."DOLocationID"=t."Location"   
+  ```
 
 ## Submitting the solutions
 
