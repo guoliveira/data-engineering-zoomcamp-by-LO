@@ -148,6 +148,19 @@ in central park on January 14?
 
 Enter the district name (not id)
 ![img_2.png](img_2.png)
+```SQL
+SELECT t.*
+FROM public.taxi_zone t
+INNER JOIN (SELECT "DOLocationID", Count(*) as C
+            FROM public.yellow_taxi
+            WHERE date(tpep_pickup_datetime) = '2021-01-14'
+            GROUP BY "DOLocationID"
+            ORDER BY C DESC
+            LIMIT 1) as MAX_DO
+MAX_DO."DOLocationID"=t."Location"   
+            ```
+
+
 ## Question 6. 
 
 What's the pickup-dropoff pair with the largest 
