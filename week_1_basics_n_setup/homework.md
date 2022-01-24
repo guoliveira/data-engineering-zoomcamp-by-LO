@@ -160,7 +160,7 @@ INNER JOIN (SELECT "DOLocationID", Count(*) as C
             GROUP BY "DOLocationID"
             ORDER BY C DESC
             LIMIT 1) as MAX_DO
-MAX_DO."DOLocationID"=t."Location"   
+ON MAX_DO."DOLocationID"=t."Location"   
   ```
 
 
@@ -171,15 +171,17 @@ average price for a ride (calculated based on `total_amount`)?
 ![img_3.png](img_3.png)
 
 ```SQL
-SELECT t.*
-FROM public.taxi_zone t
-INNER JOIN (SELECT "DOLocationID", "DOLocationID", Count(*) as C
+SELECT tPU."Zone" as PUZone, tDO."Zone" as DOZOne 
+FROM public.taxi_zone tPU
+INNER JOIN (SELECT "PULocationID", "DOLocationID", AVG(total_ammount) as AVG_Amount
             FROM public.yellow_taxi
-            WHERE date(tpep_pickup_datetime) = '2021-01-14'
-            GROUP BY "DOLocationID"
-            ORDER BY C DESC
-            LIMIT 1) as MAX_DO
-MAX_DO."DOLocationID"=t."Location"   
+            GROUP BY "PULocationID", "DOLocationID"
+            ORDER BY AVG_Amount DESC
+            LIMIT 1) as MAX_amount
+ON MAX_amount."PULocationID"=tPU."Location" 
+INNER JOIN   public.taxi_zone tDO
+ON MAX_amount."DOLocationID"=tDO."Location" 
+
   ```
 
 ## Submitting the solutions
