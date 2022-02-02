@@ -13,7 +13,7 @@ services:
         restart: always
 
     scheduler:
-        build: airflow
+        build: .
         command: scheduler
         restart: on-failure
         depends_on:
@@ -29,7 +29,7 @@ services:
 
 
     webserver:
-        build: airflow
+        build: .
         entrypoint: ./scripts/entrypoint.sh
         restart: on-failure
         depends_on:

@@ -68,7 +68,7 @@
     * Optionally, if your `google-credentials.json` is stored somewhere else, such as a path like `$HOME/.gc`, 
     modify the env-vars (`GOOGLE_APPLICATION_CREDENTIALS`, `AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT`) and `volumes` path in `docker-compose-nofrills.yml`
 
-8. Here's how the final versions of your [Dockerfile](Dockerfile) and [docker-compose-nofrills](docker-compose-nofrills.yml) should look.
+8. Here's how the final versions of your [Dockerfile](./Dockerfile) and [docker-compose-nofrills](./docker-compose-nofrills.yml) should look.
 
 
 ## Problems

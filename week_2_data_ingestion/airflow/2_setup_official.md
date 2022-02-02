@@ -71,7 +71,7 @@
      * Set environment variables `GOOGLE_APPLICATION_CREDENTIALS` and `AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT`
    * Change `AIRFLOW__CORE__LOAD_EXAMPLES` to `false` (optional)
 
-8. Here's how the final versions of your [Dockerfile](Dockerfile) and [docker-compose.yml](docker-compose.yaml) should look.
+8. Here's how the final versions of your [Dockerfile](./Dockerfile) and [docker-compose.yml](./docker-compose.yaml) should look.
 
 
 ## Problems
