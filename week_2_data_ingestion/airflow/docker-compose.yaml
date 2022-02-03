@@ -36,7 +36,7 @@
 # _PIP_ADDITIONAL_REQUIREMENTS - Additional PIP requirements to add when starting all containers.
 #                                Default: ''
 #
-# Feel free to modify this file to suit your needs.
+# Feel free to modify this file to suit your needs.pwd
 ---
 version: '3'
 x-airflow-common:
