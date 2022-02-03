@@ -63,8 +63,7 @@ with DAG(
     catchup=True,
     max_active_runs=1,
     tags=['dtc-de'],
-    start_date=datetime(2019, 1, 1),
-    end_date= datetime(2020, 12, 1)
+    start_date=datetime(2019, 1, 1)
 ) as dag:
 
     dataset_file = 'yellow_tripdata_{{ execution_date.strftime(\'%Y-%m\') }}.csv'
