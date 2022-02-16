@@ -1,10 +1,5 @@
 
-.DS_Store
-.idea
-*.tfstate
-*.tfstate.*
-**.terraform
-**.terraform.lock.*
-**logs/
-**.env
-**__pycache__/
+target/
+dbt_modules/
+logs/
+dbt_packages/
