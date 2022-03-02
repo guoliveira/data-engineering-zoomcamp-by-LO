@@ -8,3 +8,5 @@
 **logs/
 **.env
 **__pycache__/
+**.parquet
+
